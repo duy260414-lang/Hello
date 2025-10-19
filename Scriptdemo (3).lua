@@ -21,7 +21,7 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
   })
 
        MinimizeButton({
-       Image = "http://www.roblox.com/asset/?id=116092218655362",
+       Image = "http://www.roblox.com/asset/?id=102555736046677",
        Size = {60, 60},
        Color = Color3.fromRGB(10, 10, 10),
        Corner = true,
