@@ -1,0 +1,473 @@
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
+
+       local Window = MakeWindow({
+         Hub = {
+         Title = "mèo xanh sigma🤫",
+         Animation = "tiktok: mèo xanh sigma"
+         },
+        Key = {
+        KeySystem = false,
+        Title = "Key System",
+        Description = "",
+        KeyLink = "",
+        Keys = {"1234"},
+        Notifi = {
+        Notifications = true,
+        CorrectKey = "Running the Script...",
+       Incorrectkey = "The key is incorrect",
+       CopyKeyLink = "Copied to Clipboard"
+      }
+    }
+  })
+
+       MinimizeButton({
+       Image = "http://www.roblox.com/asset/?id=120375149061868",
+       Size = {60, 60},
+       Color = Color3.fromRGB(10, 10, 10),
+       Corner = true,
+       Stroke = false,
+       StrokeColor = Color3.fromRGB(255, 0, 0)
+      })
+      
+------ Tab
+     local Tab1o = MakeTab({Name = "Script Farm blox fruit"})
+     local Tab2o = MakeTab({Name = "script auto hop blox fruit"})
+     local Tab3o = MakeTab({Name = "script bounty hunter blox fruit"})
+     local Tab4o = MakeTab({Name = "script plant vs brainrot"})
+     local Tab5o = MakeTab({Name = "script steal a brainrot"})
+     local Tab6o = MakeTab({Name = "strongest battlefield"})
+     local Tab7o = MakeTab({Name = "forsaken"})
+     local Tab8o = MakeTab({Name = "evade"})
+     local Tab9o = MakeTab({Name = "grow a garden"})
+     local Tab10o = MakeTab({Name = "blue lock"})
+     local Tab11o = MakeTab({Name = "99 Nights in the Forest"})
+     local Tab12o = MakeTab({Name = "king legacy"})
+     local Tab13o = MakeTab({Name = "script meme"})
+     local Tab14o = MakeTab({Name = "crossover"})
+     local Tab15o = MakeTab({Name = "meme sea"})
+     local Tab16o = MakeTab({Name = "bất tử all game"})
+------- BUTTON
+    
+    AddButton(Tab1o, {
+     Name = "Redz Hub",
+    Callback = function()
+	  local Settings = {
+  JoinTeam = "Pirates"; -- Pirates/Marines
+  Translator = true; -- true/false
+}
+getgenv().BETA_VERSION = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
+  end
+  })
+  
+  AddButton(Tab2o, {
+     Name = "teddy hub",
+    Callback = function()
+	  repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()
+  end
+  })
+ 
+ AddButton(Tab1o, {
+     Name = "hiru hub",
+    Callback = function() getgenv().Settings = {
+JoinTeam = true,
+Team = "Marines"-- Pirates or Marines
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KiddoHiru/BloxFruits/main/Source.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "xeter hubv3",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "quantum hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "TxZ hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DrTxZ/Mercure-Hub/refs/heads/main/Mercure%20Hub.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "teddy hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub.lua"))()
+  end
+  })
+  
+  AddButton(Tab3o, {
+     Name = "teddy hub",
+    Callback = function()
+getgenv().Setting = {
+["Team"] = "Pirates",
+["Chat"] = {},
+["Skip Race V4"] = true,
+["Misc"] = {
+["Enable Lock Bounty"] = false,
+["Lock Bounty"] = {0, 300000000},
+["Lock Camera"] = true,
+["Enable Cam Farm"] = false,
+["White Screen"] = false,
+["FPS Boost"] = false,
+["Random & Store Fruit"] = true
+},
+["Item"] = {
+["Melee"] = {["Enable"] = true,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 1},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0},
+["C"] = {["Enable"] = true, ["Hold Time"] = 0}
+},
+["Blox Fruit"] = {["Enable"] = false,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 1.5},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0},
+["C"] = {["Enable"] = true, ["Hold Time"] = 0},
+["V"] = {["Enable"] = true, ["Hold Time"] = 0},
+["F"] = {["Enable"] = true, ["Hold Time"] = 0}
+},
+["Sword"] = {["Enable"] = true,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 0.3},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0.2}
+},
+["Gun"] = {["Enable"] = false,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 0.5},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0.3}
+}
+}
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-AUTOBOUNTY"))()
+  end
+  })
+  
+  AddButton(Tab3o, {
+     Name = "zero hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/htnghi1953-code/GPhuchub/refs/heads/main/ZEROHUBBOUNTY"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "blue x hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "omg hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "banana hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kimprobloxdz/Banana-Free/refs/heads/main/Protected_5609200582002947.lua.txt"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "madox hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GoblinKun009/Script/refs/heads/main/MadoxMain", true))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "volcano hubv3",
+    Callback = function() loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/indexeduu/BF-NewVer/refs/heads/main/V3New.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "doraemon",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "andepzai hub",
+    Callback = function()   repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongnguyen345roblox/TRONGNGUYEN/refs/heads/main/andepzainewupdate.txt"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "Vxezehub",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "mukuro hub",
+    Callback = function() getgenv().Mode = "OneClick"
+getgenv().Setting = {
+["Team"] = "Marines", -- Options "Pirates", "Marines"
+["FucusOnLevel"] = true,
+["Fruits"] = { -- setting for fruits u want
+["Primary"] = { -- if current fruit is not in this list, eat/buy
+"Dragon-Dragon",
+-- u can configs add mores/remove and must end with , (comma symbol)
+},
+["Normal"] = { -- it just a normal fruit list
+"Dragon-Dragon",
+-- u can configs add mores/remove and must end with , (comma symbol)
+}
+-- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,`"{v.Name}"`)end;setclipboard(table.concat(t, "\n"))`
+},
+["IdleCheck"] = 150, -- every (x) seconds if not moving rejoin
+};
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "hoho hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "maru",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/Free/refs/heads/main/MaruHubPremiumFake.HNC%20Roblox.lua"))()
+  end
+  })
+  
+  AddButton(Tab4o, {
+     Name = "plant vs brainrot",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/PlantsVsBrainrots"))()
+  end
+  })
+  
+  AddButton(Tab4o, {
+     Name = "speed hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Keisha1602/SpeedHub/refs/heads/main/script"))()
+  end
+  })
+  
+  AddButton(Tab5o, {
+     Name = "tàn hình",
+    Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/DHyT4Zoi/raw"))()
+  end
+  })
+  
+  AddButton(Tab5o, {
+     Name = "lennon hub",
+    Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/MJw2J4T6/raw"))()
+  end
+  })
+  
+  AddButton(Tab6o, {
+     Name = "né đòn",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkRandomUsernameok/PublicAssets/refs/heads/main/Releases/MUI.lua"))()
+  end
+  })
+  
+  AddButton(Tab6o, {
+     Name = "auto combo",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Mark22028/Auto-Kyoto-Combo/refs/heads/main/Skibidi%20Sigma%20Combo.txt"))()
+  end
+  })
+  
+  AddButton(Tab6o, {
+     Name = "khanhly",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khoavipok/ScriptkhanhlyHUB/refs/heads/main/Khanhly%20strongest%20pranium"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "hutao hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hdksakst-ship-it/Anti-Ban/refs/heads/main/Forsaken-V4-New.txt"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "funny hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PlutomasterAccount/Funny-Hub/main/Funny%20Hub%20V2"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "saryn hub",
+    Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Forsaken-Saryn-Hub-40752"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "SNT HUB",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Snowt69/SNT-HUB/refs/heads/main/Forsaken"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "Egased hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Amo1224gus/Egased/refs/heads/main/gag.lua"))()
+  end
+  })
+  
+  AddButton(Tab7o, {
+     Name = "Tthanhhub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kaimm2/Forsaken/refs/heads/main/TongHop"))() 
+  end
+  })
+  
+  AddButton(Tab8o, {
+     Name = "luminary x rise hub",
+    Callback = function() loadstring(game:HttpGet("https://rawscripts.net/raw/Evade-Luminary-X-Rise-HUB-51816"))()
+  end
+  })
+  
+  AddButton(Tab9o, {
+     Name = "speed hub",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+  end
+  })
+  
+  AddButton(Tab9o, {
+     Name = "beecon hub",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+  end
+  })
+  
+  AddButton(Tab1o, {
+     Name = "speed hub",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+  end
+  })
+  
+  AddButton(Tab9o, {
+     Name = "no lag",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/Main.lua"))()
+  end
+  })
+  
+  AddButton(Tab10o, {
+     Name = "control ball",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/RedJDarks/MAIN/refs/heads/main/ControlRecreate"))()
+  end
+  })
+  
+  AddButton(Tab11o, {
+     Name = "Gec",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/GEC0/gec/refs/heads/main/Gec.Loader", true))()
+  end
+  })
+  
+  AddButton(Tab11o, {
+     Name = "Foxname hub",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+  end
+  })
+  
+  AddButton(Tab11o, {
+     Name = "đồ void",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+  end
+  })
+  
+  AddButton(Tab11o, {
+     Name = "H4xScripts",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", true))()
+  end
+  })
+  
+  AddButton(Tab12o, {
+     Name = "omg hub",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+  end
+  })
+  
+  AddButton(Tab12o, {
+     Name = "zee hub",
+    Callback = function()  loadstring(game:HttpGet('https://zuwz.me/Ls-Zee-Hub-KL')) ()
+  end
+  })
+  
+  AddButton(Tab12o, {
+     Name = "Arc hub",
+    Callback = function()  loadstring(game:HttpGet("https://raw.githubusercontent.com/ChopLoris/ArcHub/main/main.lua"))()
+  end
+  })
+  
+  AddButton(Tab13o, {
+     Name = "cu bự",
+    Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/Avtor1zaTion/NO-FE-SNAKE/refs/heads/main/NO-FE-Snake.txt'))()
+  end
+  })
+  
+  AddButton(Tab13o, {
+     Name = "fe zombie",
+    Callback = function() loadstring(game:HttpGet("https://pastefy.app/JOWniO6o/raw"))()
+  end
+  })
+  
+  AddButton(Tab13o, {
+     Name = "nhảy💃",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz"))()
+  end
+  })
+  
+  AddButton(Tab13o, {
+     Name = "lọ vương",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/superskibiditotilet/superskibiditotilet/refs/heads/main/Sigma%20main.lua"))()
+  end
+  })
+  
+  AddButton(Tab14o, {
+     Name = "goomba hub",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/JustLevel/goombahub/main/AriseCrossover.lua"))()
+  end
+  })
+  
+  AddButton(Tab14o, {
+     Name = "arise crossover",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/perfectusmim1/script/refs/heads/main/crossover"))()
+  end
+  })
+  
+  AddButton(Tab15o, {
+     Name = "redz hub",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
+  end
+  })
+  
+  AddButton(Tab15o, {
+     Name = "matsune,
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yatsuraa/Matsune/main/memesea.lua"))()
+  end
+  })
+  
+  AddButton(Tab16o, {
+     Name = "bất tử,
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal"))()
+  end
+  })
