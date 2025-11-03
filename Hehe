@@ -1,0 +1,313 @@
+-- AutoFarmClient.lua
+-- LocalScript: tạo UI + auto farm logic (dùng ReplicatedStorage.DealDamageEvent)
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local dealEvent = ReplicatedStorage:WaitForChild("DealDamageEvent")
+local enemiesFolder = Workspace:WaitForChild("Enemies")
+
+-- === CẤU HÌNH MẶC ĐỊNH ===
+local config = {
+    enabled = false,
+    attackInterval = 0.6, -- giây
+    damagePerHit = 10,
+    moveMethod = "teleport", -- "teleport" hoặc "moveTo"
+    moveOffset = 3,
+}
+
+-- === HỖ TRỢ NHẬT KÝ ===
+local logs = {}
+local function addLog(text)
+    table.insert(logs, 1, os.date("%H:%M:%S").. " - " .. tostring(text))
+    if #logs > 100 then table.remove(logs, #logs) end
+    if logText then
+        logText.Text = table.concat(logs, "\n")
+    end
+end
+
+-- === TẠO UI (Tiếng Việt) ===
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "AutoFarmUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Main frame
+local main = Instance.new("Frame")
+main.Name = "Main"
+main.Size = UDim2.new(0,420,0,300)
+main.Position = UDim2.new(0,20,0,60)
+main.BackgroundTransparency = 0.12
+main.BorderSizePixel = 0
+main.Parent = screenGui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1,0,0,30)
+title.Position = UDim2.new(0,0,0,0)
+title.BackgroundTransparency = 1
+title.Text = "Auto Farm (Phiên bản học)"
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 18
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = main
+
+-- Left: tabs buttons
+local left = Instance.new("Frame")
+left.Size = UDim2.new(0,120,1,-40)
+left.Position = UDim2.new(0,0,0,40)
+left.BackgroundTransparency = 1
+left.Parent = main
+
+local function makeTabButton(name, y)
+    local b = Instance.new("TextButton")
+    b.Size = UDim2.new(1, -8, 0, 30)
+    b.Position = UDim2.new(0, 4, 0, y)
+    b.Text = name
+    b.Parent = left
+    return b
+end
+
+local btnAuto = makeTabButton("Auto Farm", 6)
+local btnSetting = makeTabButton("Cài đặt", 46)
+local btnLog = makeTabButton("Nhật ký", 86)
+
+-- Right: content area
+local content = Instance.new("Frame")
+content.Size = UDim2.new(1, -130, 1, -40)
+content.Position = UDim2.new(0,130,0,40)
+content.BackgroundTransparency = 1
+content.Parent = main
+
+-- Create Frames for each tab content
+local autoFrame = Instance.new("Frame", content)
+autoFrame.Size = UDim2.new(1,0,1,0)
+autoFrame.BackgroundTransparency = 1
+
+local settingFrame = Instance.new("Frame", content)
+settingFrame.Size = UDim2.new(1,0,1,0)
+settingFrame.Visible = false
+settingFrame.BackgroundTransparency = 1
+
+local logFrame = Instance.new("Frame", content)
+logFrame.Size = UDim2.new(1,0,1,0)
+logFrame.Visible = false
+logFrame.BackgroundTransparency = 1
+
+-- Helper switch tab
+local function showTab(tab)
+    autoFrame.Visible = false
+    settingFrame.Visible = false
+    logFrame.Visible = false
+    tab.Visible = true
+end
+
+btnAuto.MouseButton1Click:Connect(function() showTab(autoFrame) end)
+btnSetting.MouseButton1Click:Connect(function() showTab(settingFrame) end)
+btnLog.MouseButton1Click:Connect(function() showTab(logFrame) end)
+
+-- === Auto Frame content ===
+local statusLabel = Instance.new("TextLabel", autoFrame)
+statusLabel.Size = UDim2.new(1,0,0,24)
+statusLabel.Position = UDim2.new(0,0,0,0)
+statusLabel.BackgroundTransparency = 1
+statusLabel.Text = "Trạng thái: Tắt"
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local toggleBtn = Instance.new("TextButton", autoFrame)
+toggleBtn.Size = UDim2.new(0,120,0,30)
+toggleBtn.Position = UDim2.new(0,0,0,36)
+toggleBtn.Text = "Bật Auto"
+toggleBtn.MouseButton1Click:Connect(function()
+    config.enabled = not config.enabled
+    if config.enabled then
+        toggleBtn.Text = "Tắt Auto"
+        statusLabel.Text = "Trạng thái: Bật"
+        addLog("Auto bật")
+    else
+        toggleBtn.Text = "Bật Auto"
+        statusLabel.Text = "Trạng thái: Tắt"
+        addLog("Auto tắt")
+    end
+end)
+
+local infoLabel = Instance.new("TextLabel", autoFrame)
+infoLabel.Size = UDim2.new(1,0,0,60)
+infoLabel.Position = UDim2.new(0,0,0,74)
+infoLabel.BackgroundTransparency = 1
+infoLabel.Text = "Hướng dẫn: Chọn Enemy gần nhất, sẽ di chuyển và gửi yêu cầu gây sát thương lên server.\n(Lưu ý: chỉ dùng trong Studio/private server)"
+infoLabel.TextWrapped = true
+infoLabel.TextXAlignment = Enum.TextXAlignment.Left
+infoLabel.TextSize = 14
+
+-- === Setting Frame content ===
+local lblInterval = Instance.new("TextLabel", settingFrame)
+lblInterval.Position = UDim2.new(0,0,0,6)
+lblInterval.Size = UDim2.new(0,200,0,22)
+lblInterval.Text = "Khoảng cách giữa các đòn (giây):"
+lblInterval.BackgroundTransparency = 1
+lblInterval.TextXAlignment = Enum.TextXAlignment.Left
+
+local intervalBox = Instance.new("TextBox", settingFrame)
+intervalBox.Position = UDim2.new(0,210,0,6)
+intervalBox.Size = UDim2.new(0,100,0,22)
+intervalBox.Text = tostring(config.attackInterval)
+intervalBox.ClearTextOnFocus = false
+
+intervalBox.FocusLost:Connect(function(enter)
+    local v = tonumber(intervalBox.Text)
+    if v and v >= 0.05 then
+        config.attackInterval = v
+        addLog("Đổi attackInterval -> "..tostring(v))
+    else
+        intervalBox.Text = tostring(config.attackInterval)
+    end
+end)
+
+local lblDamage = Instance.new("TextLabel", settingFrame)
+lblDamage.Position = UDim2.new(0,0,0,36)
+lblDamage.Size = UDim2.new(0,200,0,22)
+lblDamage.Text = "Sát thương mỗi đòn:"
+lblDamage.BackgroundTransparency = 1
+lblDamage.TextXAlignment = Enum.TextXAlignment.Left
+
+local damageBox = Instance.new("TextBox", settingFrame)
+damageBox.Position = UDim2.new(0,210,0,36)
+damageBox.Size = UDim2.new(0,100,0,22)
+damageBox.Text = tostring(config.damagePerHit)
+damageBox.ClearTextOnFocus = false
+
+damageBox.FocusLost:Connect(function(enter)
+    local v = tonumber(damageBox.Text)
+    if v and v > 0 then
+        config.damagePerHit = v
+        addLog("Đổi damagePerHit -> "..tostring(v))
+    else
+        damageBox.Text = tostring(config.damagePerHit)
+    end
+end)
+
+local lblMove = Instance.new("TextLabel", settingFrame)
+lblMove.Position = UDim2.new(0,0,0,66)
+lblMove.Size = UDim2.new(0,200,0,22)
+lblMove.Text = "Phương pháp di chuyển (teleport/moveTo):"
+lblMove.BackgroundTransparency = 1
+lblMove.TextXAlignment = Enum.TextXAlignment.Left
+
+local moveBox = Instance.new("TextBox", settingFrame)
+moveBox.Position = UDim2.new(0,210,0,66)
+moveBox.Size = UDim2.new(0,100,0,22)
+moveBox.Text = config.moveMethod
+moveBox.ClearTextOnFocus = false
+
+moveBox.FocusLost:Connect(function(enter)
+    local v = tostring(moveBox.Text)
+    if v == "teleport" or v == "moveTo" then
+        config.moveMethod = v
+        addLog("Đổi moveMethod -> "..v)
+    else
+        moveBox.Text = config.moveMethod
+    end
+end)
+
+-- === Log Frame content ===
+local logText = Instance.new("TextLabel", logFrame)
+logText.Size = UDim2.new(1, -8, 1, -8)
+logText.Position = UDim2.new(0,4,0,4)
+logText.BackgroundTransparency = 1
+logText.TextWrapped = true
+logText.TextYAlignment = Enum.TextYAlignment.Top
+logText.Text = table.concat(logs, "\n")
+logText.RichText = false
+logText.TextXAlignment = Enum.TextXAlignment.Left
+logText.TextSize = 14
+
+-- show default tab
+showTab(autoFrame)
+
+-- === Auto farm logic ===
+local function findNearestEnemy()
+    local best, bestDist = nil, math.huge
+    for _, e in ipairs(enemiesFolder:GetChildren()) do
+        local eh = e:FindFirstChildOfClass("Humanoid")
+        local epos = e:FindFirstChild("HumanoidRootPart")
+        if eh and eh.Health > 0 and epos then
+            local d = (epos.Position - hrp.Position).Magnitude
+            if d < bestDist then
+                bestDist = d
+                best = e
+            end
+        end
+    end
+    return best, bestDist
+end
+
+local function moveToNear(part)
+    if not part then return end
+    local targetPos = part.Position
+    if config.moveMethod == "teleport" then
+        -- dịch chuyển nhân vật (dùng CFrame) - chỉ dùng để học/test
+        hrp.CFrame = CFrame.new(targetPos + Vector3.new(0, config.moveOffset, 0))
+    else
+        -- MoveTo bằng Humanoid để di chuyển tự nhiên
+        humanoid:MoveTo(targetPos + Vector3.new(0, config.moveOffset, 0))
+    end
+end
+
+-- auto loop
+spawn(function()
+    local lastAttack = 0
+    while true do
+        if not config.enabled or humanoid.Health <= 0 then
+            RunService.RenderStepped:Wait()
+        else
+            local enemy, dist = findNearestEnemy()
+            if enemy then
+                local epos = enemy:FindFirstChild("HumanoidRootPart")
+                if epos then
+                    moveToNear(epos)
+                    if tick() - lastAttack >= config.attackInterval then
+                        lastAttack = tick()
+                        -- gửi yêu cầu lên server
+                        local ok, err = pcall(function()
+                            dealEvent:FireServer(enemy, config.damagePerHit)
+                        end)
+                        if ok then
+                            addLog("Gửi damage -> " .. tostring(config.damagePerHit))
+                        else
+                            addLog("Lỗi gửi damage: "..tostring(err))
+                        end
+                    end
+                end
+            else
+                -- không có enemy, chờ 0.4s
+                RunService.RenderStepped:Wait()
+                wait(0.4)
+            end
+        end
+        RunService.RenderStepped:Wait()
+    end
+end)
+
+-- Auto update status label mỗi 0.5s
+spawn(function()
+    while true do
+        statusLabel.Text = "Trạng thái: " .. (config.enabled and "Bật" or "Tắt")
+        local nearest, d = findNearestEnemy()
+        if nearest then
+            statusLabel.Text = statusLabel.Text .. string.format(" | Enemy gần nhất: %.1f", d)
+        else
+            statusLabel.Text = statusLabel.Text .. " | Không tìm thấy enemy"
+        end
+        wait(0.5)
+    end
+end)
+
+-- Khởi tạo log ban đầu
+addLog("UI sẵn sàng. Chỉ dùng trong Studio/private server.")
