@@ -1,0 +1,102 @@
+--------------------------------------------------------------------------
+--[[ 
+--------------------------------------------------------------------------
+BY <<sigma hub>>
+--------------------------------------------------------------------------
+https://discord.gg/Tqq3VRKh -- sigma hub Community
+https://discord.gg/Tqq3VRKh -- Script Support
+--------------------------------------------------------------------------
+⚠️ CẢNH BÁO (WARN)
+--------------------------------------------------------------------------
+• Vie: Nếu đem đi share, hãy ghi credit Sigma hub. Không ghi thì tốt nhất đừng share.
+--------------------------------------------------------------------------
+• Eng: If you share this, remember to give sigma hub credit. If not, don’t share it.
+--------------------------------------------------------------------------
+]]--
+--------------------------------------------------------------------------
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Locations = workspace._WorldOrigin.Locations
+
+local function getCharacter()
+    if not LocalPlayer.Character then
+        LocalPlayer.CharacterAdded:Wait()
+    end
+    LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    return LocalPlayer.Character
+end
+
+local function DistanceFromPlrSort(ObjectList: table)
+    local RootPart = getCharacter().LowerTorso
+    table.sort(ObjectList, function(ChestA, ChestB)
+        local RootPos = RootPart.Position
+        local DistanceA = (RootPos - ChestA.Position).Magnitude
+        local DistanceB = (RootPos - ChestB.Position).Magnitude
+        return DistanceA < DistanceB
+    end)
+end
+
+local UncheckedChests, FirstRun = {}, true
+local function getChestsSorted()
+    if FirstRun then
+        FirstRun = false
+        for _, Object in pairs(game:GetDescendants()) do
+            if Object.Name:find("Chest") and Object.ClassName == "Part" then
+                table.insert(UncheckedChests, Object)
+            end
+        end
+    end
+    local Chests = {}
+    for _, Chest in pairs(UncheckedChests) do
+        if Chest:FindFirstChild("TouchInterest") then
+            table.insert(Chests, Chest)
+        end
+    end
+    DistanceFromPlrSort(Chests)
+    return Chests
+end
+
+local function toggleNoclip(Toggle: boolean)
+    for _, v in pairs(getCharacter():GetChildren()) do
+        if v:IsA("BasePart") then
+            v.CanCollide = not Toggle
+        end
+    end
+end
+
+local function Teleport(Goal: CFrame)
+    local RootPart = getCharacter().HumanoidRootPart
+    toggleNoclip(true)
+    RootPart.CFrame = Goal + Vector3.new(0, 3, 0)
+    toggleNoclip(false)
+end
+
+local function startFarm()
+    task.spawn(function()
+        while task.wait() do
+            local Chests = getChestsSorted()
+            if #Chests > 0 then
+                Teleport(Chests[1].CFrame)
+            else
+                
+            end
+        end
+    end)
+end
+
+
+task.spawn(function()
+    local rs = game:GetService("ReplicatedStorage")
+    while task.wait(5) do
+        pcall(function()
+            rs.Remotes.CommF_:InvokeServer("SetTeam","Marines")
+        end)
+    end
+end)
+
+
+LocalPlayer.CharacterAdded:Connect(function()
+    task.wait(1) 
+    startFarm()
+end)
+
+startFarm()
