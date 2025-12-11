@@ -1,0 +1,155 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+local Modules = ReplicatedStorage:WaitForChild("Modules")
+local Net = Modules:WaitForChild("Net")
+local Enemies = workspace:WaitForChild("Enemies")
+local Characters = workspace:WaitForChild("Characters")
+
+local remote, idremote
+for _, v in next, ({ReplicatedStorage.Util, ReplicatedStorage.Common, Remotes, ReplicatedStorage.Assets, ReplicatedStorage.FX}) do
+    for _, n in next, v:GetChildren() do
+        if n:IsA("RemoteEvent") and n:GetAttribute("Id") then
+            remote, idremote = n, n:GetAttribute("Id")
+        end
+    end
+    v.ChildAdded:Connect(function(n)
+        if n:IsA("RemoteEvent") and n:GetAttribute("Id") then
+            remote, idremote = n, n:GetAttribute("Id")
+        end
+    end)
+end
+
+local function IsAlive(character)
+    return character and character:FindFirstChild("Humanoid") and character.Humanoid.Health > 0
+end
+
+local function ProcessEnemies(OthersEnemies, Folder)
+    for _, Enemy in Folder:GetChildren() do
+        local Head = Enemy:FindFirstChild("Head")
+        if Head and IsAlive(Enemy) and Player:DistanceFromCharacter(Head.Position) < 500 then
+            if Enemy ~= Player.Character then
+                table.insert(OthersEnemies, { Enemy, Head })
+            end
+        end
+    end
+end
+
+
+local function GetGunTarget()
+	local root = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+	if not root then return end
+	
+	local nearest, dist = nil, math.huge
+
+	
+	if workspace:FindFirstChild("Enemies") then
+		for _, mob in ipairs(workspace.Enemies:GetChildren()) do
+			local hrp = mob:FindFirstChild("HumanoidRootPart")
+			if hrp and IsAlive(mob) then
+				local d = (root.Position - hrp.Position).Magnitude
+				if d < dist then
+					dist = d
+					nearest = hrp
+				end
+			end
+		end
+	end
+
+
+	for _, p in ipairs(Players:GetPlayers()) do
+		if p ~= Player and p.Character then
+			local hrp = p.Character:FindFirstChild("HumanoidRootPart")
+			if hrp and IsAlive(p.Character) then
+				local d = (root.Position - hrp.Position).Magnitude
+				if d < dist then
+					dist = d
+					nearest = hrp
+				end
+			end
+		end
+	end
+
+	return nearest
+end
+
+local function UltraShootGun(targetHRP)
+	if not targetHRP then return end
+	local tool = Player.Character and Player.Character:FindFirstChildOfClass("Tool")
+	if not tool or tool:GetAttribute("WeaponType") ~= "Gun" then return end
+
+	local RE_ShootGunEvent = Net:FindFirstChild("RE/ShootGunEvent")
+	if RE_ShootGunEvent then
+		RE_ShootGunEvent:FireServer(targetHRP.Position, {targetHRP})
+
+
+		VirtualInputManager:SendMouseButtonEvent(0,0,0,true,game,1)
+		VirtualInputManager:SendMouseButtonEvent(0,0,0,false,game,1)
+	end
+end
+
+
+
+task.spawn(function()
+    while task.wait(_G.FastAttackDelay or 0.02) do
+        if not _G.FastAttack then continue end
+
+        local char = Player.Character
+        local root = char and char:FindFirstChild("HumanoidRootPart")
+        if not root then continue end
+
+        local tool = char:FindFirstChildOfClass("Tool")
+        if not tool then continue end
+
+        local WType = tool:GetAttribute("WeaponType")
+
+        if WType == "Gun" then
+            local targetHRP = GetGunTarget()
+            if targetHRP then
+                UltraShootGun(targetHRP)
+            end
+            continue
+        end
+
+        local OthersEnemies = {}
+        ProcessEnemies(OthersEnemies, Enemies)
+        ProcessEnemies(OthersEnemies, Characters)
+
+        if WType == "Melee" or WType == "Sword" then
+            local parts = {}
+
+            for _, enemyData in ipairs(OthersEnemies) do
+                local enemy = enemyData[1]
+                for _, bp in ipairs(enemy:GetChildren()) do
+                    if bp:IsA("BasePart") and (enemy.HumanoidRootPart.Position - root.Position).Magnitude <= 60 then
+                        table.insert(parts, {enemy, bp})
+                    end
+                end
+            end
+
+            if #parts > 0 then
+                pcall(function()
+                    require(Modules.Net):RemoteEvent("RegisterHit", true)
+                    Net["RE/RegisterAttack"]:FireServer()
+
+                    local head = parts[1][1]:FindFirstChild("Head")
+                    if not head then return end
+
+                    Net["RE/RegisterHit"]:FireServer(head, parts, {}, tostring(Player.UserId):sub(2,4)..tostring(coroutine.running()):sub(11,15))
+
+                    cloneref(remote):FireServer(
+                        string.gsub("RE/RegisterHit", ".", function(c)
+                            return string.char(bit32.bxor(string.byte(c), math.floor(workspace:GetServerTimeNow() / 10 % 10) + 1))
+                        end),
+                        bit32.bxor(idremote + 909090, Net.seed:InvokeServer() * 2),
+                        head,
+                        parts
+                    )
+                end)
+            end
+        end
+    end
+end)
