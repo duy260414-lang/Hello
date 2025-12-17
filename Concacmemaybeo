@@ -1,0 +1,658 @@
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
+
+       local Window = MakeWindow({
+         Hub = {
+         Title = "sigma hub[tổng hợp]",
+         Animation = "tiktok: lucky_skibidi"
+         },
+        Key = {
+        KeySystem = false,
+        Title = "Key System",
+        Description = "",
+        KeyLink = "",
+        Keys = {"1234"},
+        Notifi = {
+        Notifications = true,
+        CorrectKey = "Running the Script...",
+       Incorrectkey = "The key is incorrect",
+       CopyKeyLink = "Copied to Clipboard"
+      }
+    }
+  })
+
+       MinimizeButton({
+       Image = "http://www.roblox.com/asset/?id=91628234772016",
+       Size = {60, 60},
+       Color = Color3.fromRGB(10, 10, 10),
+       Corner = true,
+       Stroke = false,
+       StrokeColor = Color3.fromRGB(255, 0, 0)
+      })
+      
+------ Tab
+Main0=Window:AddTab({ Title="Thông Tin" }),
+        Main1=Window:AddTab({ Title="Script Farm" }),
+        Main2=Window:AddTab({ Title="auto hop server" }),
+        Main3=Window:AddTab({ Title="bounty hunter" }),
+        Main4=Window:AddTab({ Title="plant vs brainrot" }),
+       Main5=Window:AddTab({ Title="steal a brainrot" }),
+       Main6=Window:AddTab({ Title="the strongest battlefields" }),
+       Main7=Window:AddTab({ Title="forsaken" }),
+       Main8=Window:AddTab({ Title="evade" }),
+       Main9=Window:AddTab({ Title="grow a garden" }),
+       Main10=Window:AddTab({ Title="blue lock" }),
+       Main11=Window:AddTab({ Title="99 Nights in the Forest" }),
+       Main12=Window:AddTab({ Title="king legacy" }),
+       Main13=Window:AddTab({ Title="script meme" }),
+       Main14=Window:AddTab({ Title="crossover" }),
+       Main15=Window:AddTab({ Title="meme sea" }),
+       Main16=Window:AddTab({ Title="hunt zombies" }),
+       Main17=Window:AddTab({ Title="dead rail" }),
+       Main18=Window:AddTab({ Title="raise animals" }),
+       Main19=Window:AddTab({ Title="auto aimbot player blox fruit" }),
+       Main20=Window:AddTab({ Title="kaitun blox fruit" }),
+       Main21=Window:AddTab({ Title="kaitun 99 Nights in the Forest" }),
+       Main22=Window:AddTab({ Title="auto farm diamond" }),
+       Main23=Window:AddTab({ Title="bất tử" }),
+     
+------- BUTTON
+    
+    Tabs.Main0:AddButton({
+    Title = "tiktok",
+    Description = "Dragon",
+    Callback = function()
+    setclipboard("www.tiktok.com/@lucky_skibidi")
+    end
+})
+    
+    Tabs.Main1:AddButton({
+    Title="Redz Hub",
+    Description="",
+    Callback=function()
+	  local Settings = {
+  JoinTeam = "Pirates"; -- Pirates/Marines
+  Translator = true; -- true/false
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
+  end
+})
+
+Tabs.Main1:AddButton({
+    Title="hiru hub",
+    Description="",
+    Callback=function()
+	  getgenv().Settings = {
+JoinTeam = true,
+Team = "Marines"-- Pirates or Marines
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KiddoHiru/BloxFruits/main/Source.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="xeter hub v3",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="quantum hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="TxZ hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DrTxZ/Mercure-Hub/refs/heads/main/Mercure%20Hub.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="TEDDY HUB",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="blue x hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="omg hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="banana hub fake",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kimprobloxdz/Banana-Free/refs/heads/main/Protected_5609200582002947.lua.txt"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="madox hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GoblinKun009/Script/refs/heads/main/MadoxMain", true))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="volcano hub v3",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/indexeduu/BF-NewVer/refs/heads/main/V3New.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="master hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="andeptrai",
+    Description="",
+    Callback=function()
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongnguyen345roblox/TRONGNGUYEN/refs/heads/main/andepzainewupdate.txt"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="Vxeze hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="mukuro hub",
+    Description="",
+    Callback=function()
+getgenv().Mode = "OneClick"
+getgenv().Setting = {
+["Team"] = "Marines", -- Options "Pirates", "Marines"
+["FucusOnLevel"] = true,
+["Fruits"] = { -- setting for fruits u want
+["Primary"] = { -- if current fruit is not in this list, eat/buy
+"Dragon-Dragon",
+-- u can configs add mores/remove and must end with , (comma symbol)
+},
+["Normal"] = { -- it just a normal fruit list
+"Dragon-Dragon",
+-- u can configs add mores/remove and must end with , (comma symbol)
+}
+-- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,`"{v.Name}"`)end;setclipboard(table.concat(t, "\n"))`
+},
+["IdleCheck"] = 150, -- every (x) seconds if not moving rejoin
+};
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="hoho hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
+  end
+  })
+  
+  Tabs.Main1:AddButton({
+    Title="maru hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/Free/refs/heads/main/MaruHubPremiumFake.HNC%20Roblox.lua"))()
+  end
+  })
+  
+  Tabs.Main2:AddButton({
+    Title="TEDDY HUB",
+    Description="",
+    Callback=function()
+repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()
+  end
+  })
+  
+  Tabs.Main3:AddButton({
+    Title="TEDDY HUB",
+    Description="",
+    Callback=function()
+getgenv().Setting = {
+["Team"] = "Pirates",
+["Chat"] = {},
+["Skip Race V4"] = true,
+["Misc"] = {
+["Enable Lock Bounty"] = false,
+["Lock Bounty"] = {0, 300000000},
+["Lock Camera"] = true,
+["Enable Cam Farm"] = false,
+["White Screen"] = false,
+["FPS Boost"] = false,
+["Random & Store Fruit"] = true
+},
+["Item"] = {
+["Melee"] = {["Enable"] = true,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 1},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0},
+["C"] = {["Enable"] = true, ["Hold Time"] = 0}
+},
+["Blox Fruit"] = {["Enable"] = false,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 1.5},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0},
+["C"] = {["Enable"] = true, ["Hold Time"] = 0},
+["V"] = {["Enable"] = true, ["Hold Time"] = 0},
+["F"] = {["Enable"] = true, ["Hold Time"] = 0}
+},
+["Sword"] = {["Enable"] = true,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 0.3},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0.2}
+},
+["Gun"] = {["Enable"] = false,
+["Z"] = {["Enable"] = true, ["Hold Time"] = 0.5},
+["X"] = {["Enable"] = true, ["Hold Time"] = 0.3}
+}
+}
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-AUTOBOUNTY"))()
+  end
+  })
+  
+  Tabs.Main3:AddButton({
+    Title="ZERO HUB",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/htnghi1953-code/GPhuchub/refs/heads/main/ZEROHUBBOUNTY"))()
+  end
+  })
+  
+  Tabs.Main4:AddButton({
+    Title="plant vs brainrot",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/PlantsVsBrainrots"))()
+  end
+  })
+  
+  Tabs.Main4:AddButton({
+    Title="speed hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Keisha1602/SpeedHub/refs/heads/main/script"))()
+  end
+  })
+  
+  Tabs.Main5:AddButton({
+    Title="invisible",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://pastefy.app/DHyT4Zoi/raw"))()
+  end
+  })
+  
+  Tabs.Main5:AddButton({
+    Title="lennon hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://pastefy.app/MJw2J4T6/raw"))()
+  end
+  })
+  
+  Tabs.Main6:AddButton({
+    Title="dodge attack",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkRandomUsernameok/PublicAssets/refs/heads/main/Releases/MUI.lua"))()
+  end
+  })
+  
+  Tabs.Main6:AddButton({
+    Title="khanhly",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khoavipok/ScriptkhanhlyHUB/refs/heads/main/Khanhly%20strongest%20pranium"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="hutao hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hdksakst-ship-it/Anti-Ban/refs/heads/main/Forsaken-V4-New.txt"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="funny hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PlutomasterAccount/Funny-Hub/main/Funny%20Hub%20V2"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="saryn hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Forsaken-Saryn-Hub-40752"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="SNT HUB",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Snowt69/SNT-HUB/refs/heads/main/Forsaken"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="Egased hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Amo1224gus/Egased/refs/heads/main/gag.lua"))()
+  end
+  })
+  
+  Tabs.Main7:AddButton({
+    Title="Tthanhhub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kaimm2/Forsaken/refs/heads/main/TongHop"))() 
+  end
+  })
+  
+  Tabs.Main8:AddButton({
+    Title="luminary x rise",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Evade-Luminary-X-Rise-HUB-51816"))()
+  end
+  })
+  
+  Tabs.Main9:AddButton({
+    Title="speed hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+  end
+  })
+  
+  Tabs.Main9:AddButton({
+    Title="beecon hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+  end
+  })
+  
+  Tabs.Main9:AddButton({
+    Title="no lag",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/Main.lua"))()
+  end
+  })
+  
+  Tabs.Main10:AddButton({
+    Title="control ball",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RedJDarks/MAIN/refs/heads/main/ControlRecreate"))()
+  end
+  })
+  
+  Tabs.Main11:AddButton({
+    Title="GEC",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GEC0/gec/refs/heads/main/Gec.Loader", true))()
+  end
+  })
+  
+  Tabs.Main11:AddButton({
+    Title="Foxname hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+  end
+  })
+  
+  Tabs.Main11:AddButton({
+    Title="vapevoid",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+  end
+  })
+  
+  Tabs.Main11:AddButton({
+    Title="h4xscripts",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", true))()
+  end
+  })
+  
+  Tabs.Main12:AddButton({
+    Title="omg hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+  end
+  })
+  
+  Tabs.Main12:AddButton({
+    Title="zee hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet('https://zuwz.me/Ls-Zee-Hub-KL')) ()
+  end
+  })
+  
+  Tabs.Main12:AddButton({
+    Title="Arc hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChopLoris/ArcHub/main/main.lua"))()
+  end
+  })
+  
+  Tabs.Main13:AddButton({
+    Title="cu bự",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Avtor1zaTion/NO-FE-SNAKE/refs/heads/main/NO-FE-Snake.txt'))()
+  end
+  })
+  
+  Tabs.Main13:AddButton({
+    Title="fe zombie",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://pastefy.app/JOWniO6o/raw"))()
+  end
+  })
+  
+  Tabs.Main13:AddButton({
+    Title="dance",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz"))()
+  end
+  })
+  
+  Tabs.Main13:AddButton({
+    Title="lọ vương",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/superskibiditotilet/superskibiditotilet/refs/heads/main/Sigma%20main.lua"))()
+  end
+  })
+  
+  Tabs.Main14:AddButton({
+    Title="goomba hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JustLevel/goombahub/main/AriseCrossover.lua"))()
+  end
+  })
+  
+  Tabs.Main14:AddButton({
+    Title="arise crossover",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/perfectusmim1/script/refs/heads/main/crossover"))()
+  end
+  })
+  
+  Tabs.Main15:AddButton({
+    Title="redz hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
+  end
+  })
+  
+  Tabs.Main15:AddButton({
+    Title="matsune",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yatsuraa/Matsune/main/memesea.lua"))()
+  end
+  })
+  
+  Tabs.Main16:AddButton({
+    Title="zee hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://zuwz.me/Ls-Zee-Hub-HZ"))()
+  end
+  })
+  
+  Tabs.Main17:AddButton({
+    Title="hunghub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hungquan99/HungHub/main/loader.lua"))()
+  end
+  })
+  
+  Tabs.Main17:AddButton({
+    Title="skull hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet('https://skullhub.xyz/loader.lua'))()
+  end
+  })
+  
+  Tabs.Main17:AddButton({
+    Title="thanhub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WawesDEV/master-lua-script/refs/heads/main/DeadRails/AutoWin/RailsScript%2520%2510.lua"))()
+  end
+  })
+  
+  Tabs.Main18:AddButton({
+    Title="dodo hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau"))()
+  end
+  })
+  
+  Tabs.Main18:AddButton({
+    Title="bonk hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://bonkhub.online/loader.lua",true))()
+  end
+  })
+  
+  Tabs.Main18:AddButton({
+    Title="jink x hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/stormskmonkey/JinkX/main/Loader.lua"))()
+  end
+  })
+  
+  Tabs.Main19:AddButton({
+    Title="centudox hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CentudoxLoader.xyz", true))()
+  end
+  })
+  
+  Tabs.Main19:AddButton({
+    Title="anhtuandzai hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AnhTuanDzai-Hub/Banana-Hub/refs/heads/main/Banana-Free.lua"))()
+  end
+  })
+  
+  Tabs.Main20:AddButton({
+    Title="kaitun",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TRANDUYTHINH/scriptdt/refs/heads/main/7bc2bab10110ef77%20(1).lua"))()
+  end
+  })
+  
+  Tabs.Main21:AddButton({
+    Title="thunder hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+  end
+  })
+  
+  Tabs.Main21:AddButton({
+    Title="cps hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Rx1m/CpsHub/refs/heads/main/Day%20farm",true))()
+  end
+  })
+  
+  Tabs.Main22:AddButton({
+    Title="foxname",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FNDayFarm.lua'))()
+  end
+  })
+  
+  Tabs.Main22:AddButton({
+    Title="thunder hub",
+    Description="",
+    Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+  end
+  })
