@@ -1,0 +1,211 @@
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+if CoreGui:FindFirstChild("TnhiKillChecker") then
+    CoreGui.TnhiKillChecker:Destroy()
+end
+
+-- make UI
+local function CreateUI()
+    local gui = Instance.new("ScreenGui", CoreGui)
+    gui.Name = "TnhiKillChecker"
+
+    local main = Instance.new("Frame", gui)
+    main.Size = UDim2.new(0, 420, 0, 220)
+    main.Position = UDim2.new(0.5, -210, 0.5, -110)
+    main.BackgroundColor3 = Color3.fromRGB(235,170,255)
+    main.BackgroundTransparency = 0.25
+    main.BorderSizePixel = 0
+    Instance.new("UICorner", main).CornerRadius = UDim.new(0,14)
+    local stroke = Instance.new("UIStroke", main)
+    stroke.Color = Color3.fromRGB(255,180,255)
+
+    -- Title
+    local title = Instance.new("TextLabel", main)
+    title.Size = UDim2.new(1,0,0,40)
+    title.BackgroundTransparency = 1
+    title.Font = Enum.Font.GothamBold
+    title.Text = "auto kill tsb"
+    title.TextColor3 = Color3.fromRGB(255,240,255)
+    title.TextSize = 26
+
+    -- Player label
+    local playerLabel = Instance.new("TextLabel", main)
+    playerLabel.Position = UDim2.new(0,20,0,60)
+    playerLabel.Size = UDim2.new(1,-40,0,30)
+    playerLabel.BackgroundTransparency = 1
+    playerLabel.Font = Enum.Font.GothamBold
+    playerLabel.TextColor3 = Color3.fromRGB(255,255,255)
+    playerLabel.TextSize = 20
+    playerLabel.Text = " 🗿 "..player.Name
+
+    -- Result kills
+    local result = Instance.new("TextLabel", main)
+    result.Position = UDim2.new(0,20,0,100)
+    result.Size = UDim2.new(1,-40,0,60)
+    result.BackgroundTransparency = 1
+    result.Font = Enum.Font.Gotham
+    result.TextColor3 = Color3.new(1,1,1)
+    result.TextSize = 18
+    result.TextWrapped = true
+    result.Text = "Đang tải dữ liệu kill..."
+
+    -- Status vòng orbit
+    local orbitStatus = Instance.new("TextLabel", main)
+    orbitStatus.Position = UDim2.new(0,20,0,160)
+    orbitStatus.Size = UDim2.new(1,-40,0,30)
+    orbitStatus.BackgroundTransparency = 1
+    orbitStatus.Font = Enum.Font.Gotham
+    orbitStatus.TextColor3 = Color3.fromRGB(255,255,0)
+    orbitStatus.TextSize = 18
+    orbitStatus.Text = "Đang chọn mục tiêu..."
+
+    -- Icon cố định góc
+    local icon = Instance.new("ImageLabel", main)
+    icon.Position = UDim2.new(0,5,0,5)
+    icon.Size = UDim2.new(0,36,0,36)
+    icon.Image = "rbxassetid://91628234772016"
+    icon.BackgroundTransparency = 1
+
+    return gui, result, orbitStatus
+end
+
+local gui, resultLabel, orbitStatusLabel = CreateUI()
+
+-- HRP của local player
+local function getHRP(plr)
+    if plr and plr.Character then
+        return plr.Character:FindFirstChild("HumanoidRootPart")
+    end
+end
+
+-- Config orbit
+local cfg = {
+    Radius = 3,
+    Height = 4,
+    Speed = 9,
+}
+
+local angle = 0
+local targetPlayer = nil
+
+-- Chọn target gần nhất
+local function getNearestPlayer()
+    local nearest, minDist = nil, math.huge
+    local myHRP = getHRP(player)
+    if not myHRP then return nil end
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local hum = plr.Character:FindFirstChildOfClass("Humanoid")
+            if hum and hum.Health > 0 then
+                local dist = (plr.Character.HumanoidRootPart.Position - myHRP.Position).Magnitude
+                if dist < minDist then
+                    nearest = plr
+                    minDist = dist
+                end
+            end
+        end
+    end
+    return nearest
+end
+
+-- Cập nhật target khi chết hoặc respawn
+local function updateTarget()
+    if not targetPlayer or not targetPlayer.Parent or not targetPlayer.Character then
+        targetPlayer = getNearestPlayer()
+        angle = 0
+    else
+        local hum = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if not hum or hum.Health <= 0 then
+            targetPlayer = getNearestPlayer()
+            angle = 0
+        end
+    end
+    if targetPlayer then
+        orbitStatusLabel.Text = "Orbit quanh: "..targetPlayer.Name
+    else
+        orbitStatusLabel.Text = " Không có mục tiêu"
+    end
+end
+
+-- Orbit vòng quanh
+RunService.Heartbeat:Connect(function(dt)
+    updateTarget()
+    if not targetPlayer then return end
+    local myHRP = getHRP(player)
+    local targetHRP = getHRP(targetPlayer)
+    if not myHRP or not targetHRP then return end
+
+    angle += cfg.Speed * dt
+    local x = math.cos(angle) * cfg.Radius
+    local z = math.sin(angle) * cfg.Radius
+    local pos = targetHRP.Position + Vector3.new(x, cfg.Height, z)
+    myHRP.CFrame = CFrame.lookAt(pos, targetHRP.Position)
+end)
+
+task.spawn(function()
+    while task.wait(0.5) do
+        pcall(function()
+            if player and player:FindFirstChild("leaderstats") then
+                local kills = player.leaderstats:FindFirstChild("Kills")
+                local total = player.leaderstats:FindFirstChild("Total Kills")
+                local k = kills and kills.Value or 0
+                local t = total and total.Value or 0
+                resultLabel.Text = string.format("Kills: %s\n Total Kills: %s", k,t)
+            else
+                resultLabel.Text = "Không tìm thấy dữ liệu kill!"
+            end
+        end)
+    end
+end)
+
+-- Auto skill / LeftClick 
+task.spawn(function()
+    while task.wait(1) do
+        pcall(function()
+            local char = player.Character
+            if char and char:FindFirstChild("Communicate") then
+                local Communicate = char.Communicate
+
+                -- LeftClick
+                Communicate:FireServer({Goal="LeftClick", Mobile=true})
+
+                -- NormalPunch 1s
+                local normal = player.Backpack:FindFirstChild("Normal Punch")
+                if normal then
+                    Communicate:FireServer({Goal="Console Move", Tool=normal})
+                end
+
+                -- Consecutive Punches 2s
+                task.wait(1)
+                local cons = player.Backpack:FindFirstChild("Consecutive Punches")
+                if cons then
+                    Communicate:FireServer({Goal="Console Move", Tool=cons})
+                end
+
+                -- Shove 3s
+                task.wait(1)
+                local shove = player.Backpack:FindFirstChild("Shove")
+                if shove then
+                    Communicate:FireServer({Goal="Console Move", Tool=shove})
+                end
+
+                -- Uppercut 4s
+                task.wait(1)
+                local upper = player.Backpack:FindFirstChild("Uppercut")
+                if upper then
+                    Communicate:FireServer({Goal="Console Move", Tool=upper})
+                end
+            end
+        end)
+    end
+end)
+
+--  respawn reset target
+player.CharacterAdded:Connect(function()
+    task.wait(1)
+    targetPlayer = nil
+end)
+-- share by @lucky_skibidi
